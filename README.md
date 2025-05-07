@@ -40,19 +40,62 @@ Parkinson's Disease detection is a major challenge in healthcare, requiring accu
 
 Class Distribution
 
+![ClassDist](https://github.com/user-attachments/assets/b3774140-ae9b-4e4a-8648-11a285369f84)
 
-## Methodology
+Histogram of all features
 
-### Preprocessing
-- **Normalization**: Applied **StandardScaler** to standardize the features and ensure they are on the same scale for better model performance.
-- **Class Balancing**: Used **SMOTE (Synthetic Minority Over-sampling Technique)** to address class imbalance in the dataset, ensuring that both classes (Healthy vs Parkinson's) are adequately represented in the training set.
-- **Feature Selection**: Removed highly correlated features based on Pearson correlation, reducing multicollinearity and enhancing model performance.
-- **Feature Scaling**: After balancing, the scaled features were used to train the models, ensuring uniformity in training.
+![Histogram](https://github.com/user-attachments/assets/4e2a9deb-90e4-457d-bfba-2d619232e75e)
 
-### Exploratory Data Analysis
-- **Analyzed feature distributions**: Visualized the distribution of features to understand how the data is spread and whether there are any skewed distributions.
-- **Correlation Analysis**: Performed a correlation analysis to identify and remove redundant features, ensuring the models focus on the most informative features.
-- **Class Distribution**: Evaluated the distribution of labels to confirm the need for balancing due to the underrepresentation of the Parkinson's class.
+Box Plots
+
+![Boxplot-1](https://github.com/user-attachments/assets/98e54741-c245-433f-b3b6-84401e66e918)
+
+![Bookplot2](https://github.com/user-attachments/assets/e4eb555b-91eb-4fb3-86fe-3ea9e091df18)
+
+![boxplot3](https://github.com/user-attachments/assets/8d56f053-b275-4b66-8178-803f16a84985)
+
+![boxplot4](https://github.com/user-attachments/assets/99cdb9ce-6fa9-41b4-ac13-2ef8b0d2cf2d)
+
+![boxplot5](https://github.com/user-attachments/assets/3271dc20-79df-459f-9545-3fd1af5b5eb0)
+
+
+Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
+
+![Stacked bar plots](https://github.com/user-attachments/assets/a7d7cb6c-8d14-4ded-befc-3e81fcf259b2)
+
+
+
+### Methodology
+
+## Preprocessing Steps:
+
+This section outlines all the preprocessing steps performed from the train-test split onward, along with the specific dimensions at each stage.
+
+1. Train-Test Split: The dataset was split into training and test sets using an 80-20 split. Stratification was applied to ensure class balance across both sets.
+
+   Training set shape: 156 rows, 22 features
+
+   Test set shape: 40 rows, 22 features
+
+2. Feature Scaling: StandardScaler was used to normalize the data by removing the mean and scaling to unit variance. The scaler was fit only on the training set and then applied to both training and test sets to prevent data leakage.
+
+   Scaled training data shape: 156 rows, 22 features
+
+   Scaled test data shape: 40 rows, 22 features
+
+3. Feature Reduction: Removed highly correlated features based on a Pearson correlation matrix with a threshold of 0.9 to reduce multicollinearity and improve model interpretability.
+Dropped features due to high correlation (> 0.9):
+['MDVP:Jitter(Abs)', 'MDVP:RAP', 'MDVP:PPQ', 'Jitter:DDP', 'MDVP:Shimmer(dB)', 'Shimmer:APQ3', 'Shimmer:APQ5', 'MDVP:APQ', 'Shimmer:DDA', 'NHR', 'PPE']
+
+![Co- relation matrix](https://github.com/user-attachments/assets/741c8adf-dc55-4f7d-8961-64aa0bb2bd2d)
+
+
+5. Class Balancing: Used SMOTE (Synthetic Minority Over-sampling Technique) on the scaled training set to generate synthetic samples for the minority class and balance the dataset.
+   
+   **Note**: I have balanced two sets one with droping 10 columns and another without droping 
+    10 columns to check if there is any difference in accuracy. 
+
+
 
 ### Model Training
 - **Logistic Regression**: Used as a baseline model to assess linear relationships between the features and the target variable.
@@ -61,15 +104,11 @@ Class Distribution
 - **Random Forest**: Employed an ensemble of decision trees, trained with hyperparameter tuning using **GridSearchCV**.
 - **Neural Networks (MLP)**: A deep learning model used for its ability to learn complex patterns from the data, trained with **GridSearchCV**.
 
-
-
-
-
 ### Model Evaluation
 - Evaluated each model using metrics like **accuracy**, **precision**, **recall**, and **F1-score** to ensure that both performance and the balance between false positives and false negatives were considered.
 - Plotted **ROC curves** for each model to assess how well the models perform at different classification thresholds.
 
-## Model Evaluation
+## Model Evaluation by with droping 10 features
 
 | Model              | Accuracy  | Precision | Recall   | F1-Score |
 |--------------------|-----------|-----------|----------|----------|
@@ -78,6 +117,43 @@ Class Distribution
 | Decision Tree      | 0.897436  | 0.962963  | 0.896552 | 0.929432 |
 | Random Forest      | 0.923077  | 0.964286  | 0.931034 | 0.947368 |
 | Neural Network     | 0.923077  | 0.964286  | 0.931034 | 0.947368 |
+
+## Model Evaluation by without droping 10 features.
+
+| Model               | Accuracy | Precision (1) | Recall (1) | F1-score (1) |
+|---------------------|----------|----------------|-------------|---------------|
+| Logistic Regression | 0.769231 | 0.954545       | 0.724138    | 0.823529      |
+| SVC                 | 0.820513 | 0.958333       | 0.793103    | 0.867925      |
+| Decision Tree       | 0.846154 | 0.925926       | 0.862069    | 0.892857      |
+| Random Forest       | 0.897436 | 0.962963       | 0.896552    | 0.928571      |
+| Neural Network      | 0.974359 | 1.000000       | 0.965517    | 0.982456      |
+
+## Interpretation :Clearly by models with feature reduction are having better accuracy a part from Neural Network which has 97 % accuracy and logistic regression which has 76 %.
+
+## Confusion matric for all models
+
+# Logistic Regression
+
+![LR](https://github.com/user-attachments/assets/777668d2-988f-4e1d-93ca-dac54ed6e54d)
+
+# SVC
+
+![SVC](https://github.com/user-attachments/assets/a6dc31b1-c073-464b-84ed-1e302b6fd0a7)
+
+
+# Decision Tree
+
+![DT](https://github.com/user-attachments/assets/9b18441d-f2e1-4d87-8e4b-37d9450764e7)
+
+# Random Forest
+
+![RF](https://github.com/user-attachments/assets/99907085-f799-4953-b9c1-68e022588829)
+
+# Neural Network
+
+![NN](https://github.com/user-attachments/assets/29193861-9ffd-4b8c-8d8c-d8cb2f02486f)
+
+
 
 
 ### Hyperparameter Tuning
