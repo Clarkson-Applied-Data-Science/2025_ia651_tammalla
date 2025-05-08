@@ -38,15 +38,15 @@ Parkinson's Disease detection is a major challenge in healthcare, requiring accu
 
 ## EDA
 
-Class Distribution
+# Class Distribution
 
 ![ClassDist](https://github.com/user-attachments/assets/b3774140-ae9b-4e4a-8648-11a285369f84)
 
-Histogram of all features
+# Histogram of all features
 
 ![Histogram](https://github.com/user-attachments/assets/4e2a9deb-90e4-457d-bfba-2d619232e75e)
 
-Box Plots
+# Box Plots
 
 ![Boxplot-1](https://github.com/user-attachments/assets/98e54741-c245-433f-b3b6-84401e66e918)
 
@@ -59,7 +59,7 @@ Box Plots
 ![boxplot5](https://github.com/user-attachments/assets/3271dc20-79df-459f-9545-3fd1af5b5eb0)
 
 
-Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
+# Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
 
 ![Stacked bar plots](https://github.com/user-attachments/assets/a7d7cb6c-8d14-4ded-befc-3e81fcf259b2)
 
