@@ -216,7 +216,7 @@ alpha: 0.0001, 0.001, 0.01
 
 ![Feature Importance](https://github.com/user-attachments/assets/fe04c6b3-c870-4fc0-b21f-197869bcddcf)
 
-# Interpretation:
+ **Interpretation**:
 The Random Forest model identified spread1, MDVP:Shimmer, and MDVP:Fo(Hz) as the most important features in detecting Parkinson’s Disease. These features reflect voice instability and frequency variation, which are commonly affected in Parkinson’s patients. Lower-ranked features like DFA and HNR contributed less but still added value to the model's predictions.
 
 ## Conclusion
