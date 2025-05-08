@@ -42,26 +42,48 @@ Parkinson's Disease detection is a major challenge in healthcare, requiring accu
 
 ![ClassDist](https://github.com/user-attachments/assets/b3774140-ae9b-4e4a-8648-11a285369f84)
 
+The class distribution is imbalanced, with significantly more patients diagnosed with Parkinson’s (label 1) than healthy individuals (label 0). This imbalance may affect model performance and requires techniques like resampling or class weighting during training.
+
 # Histogram of all features
 
 ![Histogram](https://github.com/user-attachments/assets/4e2a9deb-90e4-457d-bfba-2d619232e75e)
+
+The histograms show that most features are right-skewed with a few outliers, especially in jitter, shimmer, and noise-related metrics. Some features like spread1, spread2, DFA, and D2 appear more normally distributed. This variability suggests that scaling and normalization are important before applying machine learning models.
 
 # Box Plots
 
 ![Boxplot-1](https://github.com/user-attachments/assets/98e54741-c245-433f-b3b6-84401e66e918)
 
+Jitter is also higher in Parkinson’s patients, indicating increased pitch variability and vocal irregularity compared to healthy individuals.
+
 ![Bookplot2](https://github.com/user-attachments/assets/e4eb555b-91eb-4fb3-86fe-3ea9e091df18)
+
+Patients with Parkinson’s show significantly higher shimmer values, indicating greater amplitude variability in their voice. This reflects reduced vocal stability.
 
 ![boxplot3](https://github.com/user-attachments/assets/8d56f053-b275-4b66-8178-803f16a84985)
 
+Healthy individuals tend to have higher HNR values, suggesting cleaner, less noisy vocal signals, while Parkinson’s patients have more hoarseness or breathiness.
+
 ![boxplot4](https://github.com/user-attachments/assets/99cdb9ce-6fa9-41b4-ac13-2ef8b0d2cf2d)
 
+RPDE values are higher in those with Parkinson’s, suggesting more complex and less predictable voice patterns due to vocal impairment.
+
 ![boxplot5](https://github.com/user-attachments/assets/3271dc20-79df-459f-9545-3fd1af5b5eb0)
+
+PPE is elevated in Parkinson’s cases, indicating increased vocal signal unpredictability, which is common in affected individuals.
 
 
 # Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
 
 ![Stacked bar plots](https://github.com/user-attachments/assets/a7d7cb6c-8d14-4ded-befc-3e81fcf259b2)
+
+The stacked bar plots show how binned feature values relate to Parkinson’s status:
+
+RPDE and PPE: Higher bins have more Parkinson’s cases, indicating increased voice signal complexity and unpredictability in affected individuals.
+
+MDVP:Jitter(%): Most Parkinson’s cases are concentrated even in the lower jitter bin, showing even small pitch variations are informative.
+
+HNR: Lower HNR bins have more Parkinson’s patients, reflecting noisier, less harmonic voices compared to healthy individuals.
 
 
 
