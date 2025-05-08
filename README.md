@@ -93,7 +93,7 @@ HNR: Lower HNR bins have more Parkinson’s patients, reflecting noisier, less h
 
 This section outlines all the preprocessing steps performed from the train-test split onward, along with the specific dimensions at each stage.
 
-1. **Train-Test Split**: The dataset was split into training and test sets using an 80-20 split. Stratification was applied to ensure class balance across both sets.
+1. **Train-Test Split**: The dataset was split into training and test sets using an 80-20 split.
 
    Training set shape: 156 rows, 22 features
 
