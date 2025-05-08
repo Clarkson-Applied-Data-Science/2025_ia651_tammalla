@@ -36,21 +36,21 @@ Parkinson's Disease detection is a major challenge in healthcare, requiring accu
 | D2                   | 2.38183  | 0.38280  | 1.42329 | 2.09913  | 2.36153  | 2.63646  | 3.67115  |
 | PPE                  | 0.02655  | 0.09012  | 0.04454 | 0.13745  | 0.19405  | 0.25298  | 0.52737  |
 
-## Exploratory Data Analysis
+# Exploratory Data Analysis
 
-# Class Distribution
+## Class Distribution
 
 ![ClassDist](https://github.com/user-attachments/assets/b3774140-ae9b-4e4a-8648-11a285369f84)
 
 The class distribution is imbalanced, with significantly more patients diagnosed with Parkinson’s (label 1) than healthy individuals (label 0). This imbalance may affect model performance and requires techniques like resampling or class weighting during training.
 
-# Histogram of all features
+## Histogram of all features
 
 ![Histogram](https://github.com/user-attachments/assets/4e2a9deb-90e4-457d-bfba-2d619232e75e)
 
 The histograms show that most features are right-skewed with a few outliers, especially in jitter, shimmer, and noise-related metrics. Some features like spread1, spread2, DFA, and D2 appear more normally distributed. This variability suggests that scaling and normalization are important before applying machine learning models.
 
-# Box Plots
+## Box Plots
 
 ![Boxplot-1](https://github.com/user-attachments/assets/98e54741-c245-433f-b3b6-84401e66e918)
 
@@ -72,8 +72,7 @@ RPDE values are higher in those with Parkinson’s, suggesting more complex and 
 
 PPE is elevated in Parkinson’s cases, indicating increased vocal signal unpredictability, which is common in affected individuals.
 
-
-# Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
+## Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
 
 ![Stacked bar plots](https://github.com/user-attachments/assets/a7d7cb6c-8d14-4ded-befc-3e81fcf259b2)
 
@@ -84,8 +83,6 @@ RPDE and PPE: Higher bins have more Parkinson’s cases, indicating increased vo
 MDVP:Jitter(%): Most Parkinson’s cases are concentrated even in the lower jitter bin, showing even small pitch variations are informative.
 
 HNR: Lower HNR bins have more Parkinson’s patients, reflecting noisier, less harmonic voices compared to healthy individuals.
-
-
 
 ### Methodology
 
@@ -109,6 +106,8 @@ This section outlines all the preprocessing steps performed from the train-test 
 Dropped features due to high correlation (> 0.9):
 ['MDVP:Jitter(Abs)', 'MDVP:RAP', 'MDVP:PPQ', 'Jitter:DDP', 'MDVP:Shimmer(dB)', 'Shimmer:APQ3', 'Shimmer:APQ5', 'MDVP:APQ', 'Shimmer:DDA', 'NHR', 'PPE']
 
+  **Note** : I have done models with and without droping above features and compared the results below.
+
 ![Co- relation matrix](https://github.com/user-attachments/assets/741c8adf-dc55-4f7d-8961-64aa0bb2bd2d)
 
 
@@ -117,18 +116,18 @@ Dropped features due to high correlation (> 0.9):
    **Note**: I have balanced two sets one with droping 10 columns and another without droping 
     10 columns to check if there is any difference in accuracy. 
 
-
-
 ### Model Training
 - **Logistic Regression**: Used as a baseline model to assess linear relationships between the features and the target variable.
-- **Support Vector Classification (SVC)**: Applied with a radial basis function kernel, tuned for better performance using **GridSearchCV**.
+- **Support Vector Classification (SVC)**: Applied with a radial basis function kernel.
 - **Decision Tree**: Used for non-linear classification and as a benchmark for other tree-based models.
 - **Random Forest**: Employed an ensemble of decision trees, trained with hyperparameter tuning using **GridSearchCV**.
 - **Neural Networks (MLP)**: A deep learning model used for its ability to learn complex patterns from the data, trained with **GridSearchCV**.
 
 ### Model Evaluation
 - Evaluated each model using metrics like **accuracy**, **precision**, **recall**, and **F1-score** to ensure that both performance and the balance between false positives and false negatives were considered.
+- Evaluated with and without removing the features for all the models.
 - Plotted **ROC curves** for each model to assess how well the models perform at different classification thresholds.
+  
 
 ## Model Evaluation with droping 10 features
 
@@ -179,8 +178,6 @@ Dropped features due to high correlation (> 0.9):
 
 ![ROC curve](https://github.com/user-attachments/assets/a18d75aa-3888-42af-a18a-066983c3999f)
 
-
-
 ### Hyperparameter Tuning
 - **GridSearchCV** was applied for **Random Forest** and **Neural Networks (MLP)** to optimize the models' hyperparameters, ensuring the best performance for both models.
 
@@ -222,7 +219,6 @@ alpha: 0.0001, 0.001, 0.01
 # Interpretation:
 The Random Forest model identified spread1, MDVP:Shimmer, and MDVP:Fo(Hz) as the most important features in detecting Parkinson’s Disease. These features reflect voice instability and frequency variation, which are commonly affected in Parkinson’s patients. Lower-ranked features like DFA and HNR contributed less but still added value to the model's predictions.
 
-
 ## Conclusion
 
 This project aimed to detect **Parkinson's Disease** from voice features using multiple machine learning models. The dataset was processed with careful preprocessing steps including feature scaling, class balancing using **SMOTE**, and feature selection based on correlation. Hyperparameter tuning was applied to **Random Forest** and **Neural Network (MLP)** using **GridSearchCV** to optimize model performance.
@@ -257,7 +253,6 @@ In conclusion, the results suggest that **Random Forest** is slightly better at 
 
 5. **Integration with Medical Systems**:
     - Work towards integrating the final model into **electronic health record (EHR) systems** for seamless data collection and analysis. This would help healthcare providers use voice data for early-stage Parkinson’s detection, improving the speed and accuracy of diagnoses.
-
 
 ## Acknowledgment
 
