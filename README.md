@@ -36,7 +36,7 @@ Parkinson's Disease detection is a major challenge in healthcare, requiring accu
 | D2                   | 2.38183  | 0.38280  | 1.42329 | 2.09913  | 2.36153  | 2.63646  | 3.67115  |
 | PPE                  | 0.02655  | 0.09012  | 0.04454 | 0.13745  | 0.19405  | 0.25298  | 0.52737  |
 
-## EDA
+## Exploratory Data Analysis
 
 # Class Distribution
 
