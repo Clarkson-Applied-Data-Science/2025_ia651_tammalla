@@ -71,26 +71,26 @@ Stacked bar of 'RPDE', 'MDVP:Jitter(%)', 'PPE', 'HNR' vs Target variable
 
 This section outlines all the preprocessing steps performed from the train-test split onward, along with the specific dimensions at each stage.
 
-1. Train-Test Split: The dataset was split into training and test sets using an 80-20 split. Stratification was applied to ensure class balance across both sets.
+1. **Train-Test Split**: The dataset was split into training and test sets using an 80-20 split. Stratification was applied to ensure class balance across both sets.
 
    Training set shape: 156 rows, 22 features
 
    Test set shape: 40 rows, 22 features
 
-2. Feature Scaling: StandardScaler was used to normalize the data by removing the mean and scaling to unit variance. The scaler was fit only on the training set and then applied to both training and test sets to prevent data leakage.
+2. **Feature Scaling**: StandardScaler was used to normalize the data by removing the mean and scaling to unit variance. The scaler was fit only on the training set and then applied to both training and test sets to prevent data leakage.
 
    Scaled training data shape: 156 rows, 22 features
 
    Scaled test data shape: 40 rows, 22 features
 
-3. Feature Reduction: Removed highly correlated features based on a Pearson correlation matrix with a threshold of 0.9 to reduce multicollinearity and improve model interpretability.
+3. **Feature Reduction**: Removed highly correlated features based on a Pearson correlation matrix with a threshold of 0.9 to reduce multicollinearity and improve model interpretability.
 Dropped features due to high correlation (> 0.9):
 ['MDVP:Jitter(Abs)', 'MDVP:RAP', 'MDVP:PPQ', 'Jitter:DDP', 'MDVP:Shimmer(dB)', 'Shimmer:APQ3', 'Shimmer:APQ5', 'MDVP:APQ', 'Shimmer:DDA', 'NHR', 'PPE']
 
 ![Co- relation matrix](https://github.com/user-attachments/assets/741c8adf-dc55-4f7d-8961-64aa0bb2bd2d)
 
 
-5. Class Balancing: Used SMOTE (Synthetic Minority Over-sampling Technique) on the scaled training set to generate synthetic samples for the minority class and balance the dataset.
+5. **Class Balancing**: Used SMOTE (Synthetic Minority Over-sampling Technique) on the scaled training set to generate synthetic samples for the minority class and balance the dataset.
    
    **Note**: I have balanced two sets one with droping 10 columns and another without droping 
     10 columns to check if there is any difference in accuracy. 
@@ -108,7 +108,7 @@ Dropped features due to high correlation (> 0.9):
 - Evaluated each model using metrics like **accuracy**, **precision**, **recall**, and **F1-score** to ensure that both performance and the balance between false positives and false negatives were considered.
 - Plotted **ROC curves** for each model to assess how well the models perform at different classification thresholds.
 
-## Model Evaluation by with droping 10 features
+## Model Evaluation with droping 10 features
 
 | Model              | Accuracy  | Precision | Recall   | F1-Score |
 |--------------------|-----------|-----------|----------|----------|
@@ -118,7 +118,7 @@ Dropped features due to high correlation (> 0.9):
 | Random Forest      | 0.923077  | 0.964286  | 0.931034 | 0.947368 |
 | Neural Network     | 0.923077  | 0.964286  | 0.931034 | 0.947368 |
 
-## Model Evaluation by without droping 10 features.
+## Model Evaluation without droping 10 features.
 
 | Model               | Accuracy | Precision (1) | Recall (1) | F1-score (1) |
 |---------------------|----------|----------------|-------------|---------------|
@@ -128,7 +128,7 @@ Dropped features due to high correlation (> 0.9):
 | Random Forest       | 0.897436 | 0.962963       | 0.896552    | 0.928571      |
 | Neural Network      | 0.974359 | 1.000000       | 0.965517    | 0.982456      |
 
-## Interpretation :Clearly by models with feature reduction are having better accuracy a part from Neural Network which has 97 % accuracy and logistic regression which has 76 %.
+## Interpretation :Clearly all models with feature reduction are having better accuracy a part from Neural Network which has 97 % accuracy and logistic regression which has 76 %.
 
 ## Confusion matric for all models
 
@@ -153,11 +153,38 @@ Dropped features due to high correlation (> 0.9):
 
 ![NN](https://github.com/user-attachments/assets/29193861-9ffd-4b8c-8d8c-d8cb2f02486f)
 
+## ROC Curve
+
+![ROC curve](https://github.com/user-attachments/assets/a18d75aa-3888-42af-a18a-066983c3999f)
 
 
 
 ### Hyperparameter Tuning
 - **GridSearchCV** was applied for **Random Forest** and **Neural Networks (MLP)** to optimize the models' hyperparameters, ensuring the best performance for both models.
+
+## Random Forest Classifier
+The Random Forest model was optimized by performing a grid search over a predefined set of hyperparameters. This ensemble learning method constructs multiple decision trees during training and outputs the mode of their predictions.
+
+# Tuned hyperparameters:
+n_estimators: 50, 100, 150
+
+max_depth: 5, 10, 15, None
+
+min_samples_split: 2, 5
+
+min_samples_leaf: 1, 2, 4
+
+## Neural Network (MLP)
+The Multi-layer Perceptron (MLP) model was also tuned using GridSearchCV. MLP is a type of feedforward neural network that learns non-linear relationships between input features and the target variable through multiple layers of neurons.
+
+# Tuned hyperparameters:
+hidden_layer_sizes: (50,), (100,), (50, 50)
+
+activation: relu, tanh
+
+solver: adam, sgd
+
+alpha: 0.0001, 0.001, 0.01
 
 ## Model Evaluation After Hyperparameter Tuning
 
@@ -165,6 +192,11 @@ Dropped features due to high correlation (> 0.9):
 |--------------------|-----------|-----------|----------|----------|
 | Random Forest (Tuned) | 0.923077  | 0.964286  | 0.931034 | 0.947368 |
 | Neural Network (Tuned) | 0.923077  | 1.000000  | 0.896552 | 0.945455 |
+
+## Feature Importance with Random Forest.
+
+![Feature Importance](https://github.com/user-attachments/assets/fe04c6b3-c870-4fc0-b21f-197869bcddcf)
+
 
 ## Conclusion
 
