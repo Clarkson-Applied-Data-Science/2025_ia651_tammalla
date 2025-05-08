@@ -128,9 +128,9 @@ Dropped features due to high correlation (> 0.9):
 | Random Forest       | 0.897436 | 0.962963       | 0.896552    | 0.928571      |
 | Neural Network      | 0.974359 | 1.000000       | 0.965517    | 0.982456      |
 
-## Interpretation :Clearly all models with feature reduction are having better accuracy a part from Neural Network which has 97 % accuracy and logistic regression which has 76 %.
+# Interpretation: Clearly all models with feature reduction are having better accuracy a part from Neural Network which has 97 % accuracy and logistic regression which has 76 %.
 
-## Confusion matric for all models
+## Confusion matrix for all models
 
 # Logistic Regression
 
